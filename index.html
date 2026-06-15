@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expense Tracker</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="app__header">
+      <h1>Expense Tracker</h1>
+      <p class="app__subtitle">Track what you spend. Your data stays in your browser.</p>
+    </header>
+
+    <!-- Add-expense form -->
+    <section class="card">
+      <h2>Add an expense</h2>
+      <form id="expense-form" novalidate>
+        <div class="form-row">
+          <label for="description">Description</label>
+          <input type="text" id="description" name="description" placeholder="e.g. Lunch with team" />
+        </div>
+
+        <div class="form-row">
+          <label for="amount">Amount ($)</label>
+          <input type="number" id="amount" name="amount" min="0" step="0.01" placeholder="0.00" />
+        </div>
+
+        <div class="form-row">
+          <label for="category">Category</label>
+          <select id="category" name="category">
+            <option value="Food">Food</option>
+            <option value="Transport">Transport</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Bills">Bills</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="date">Date</label>
+          <input type="date" id="date" name="date" />
+        </div>
+
+        <p id="form-error" class="form-error" role="alert" hidden></p>
+
+        <button type="submit" class="btn btn--primary">Add expense</button>
+      </form>
+    </section>
+
+    <!-- Controls: filter + sort -->
+    <section class="card">
+      <div class="controls">
+        <div class="control">
+          <label for="filter-category">Filter by category</label>
+          <select id="filter-category">
+            <option value="All">All</option>
+            <option value="Food">Food</option>
+            <option value="Transport">Transport</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Bills">Bills</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="control">
+          <label for="sort-by">Sort by</label>
+          <select id="sort-by">
+            <option value="date-desc">Date (newest first)</option>
+            <option value="date-asc">Date (oldest first)</option>
+            <option value="amount-desc">Amount (high to low)</option>
+            <option value="amount-asc">Amount (low to high)</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Summary / totals -->
+    <section class="card summary">
+      <div class="summary__main">
+        <div>
+          <span class="summary__label">Total</span>
+          <span id="total" class="summary__total">$0.00</span>
+          <span id="total-eur" class="summary__eur" hidden></span>
+        </div>
+        <div class="summary__convert">
+          <button id="convert-btn" type="button" class="btn btn--secondary">Convert to EUR</button>
+          <p id="convert-error" class="form-error" role="alert" hidden></p>
+        </div>
+      </div>
+      <p class="summary__count"><span id="count">0</span> expense(s) shown</p>
+      <ul id="category-totals" class="category-totals"></ul>
+    </section>
+
+    <!-- Expense list -->
+    <section class="card">
+      <h2>Expenses</h2>
+      <div id="expense-list-wrap">
+        <ul id="expense-list" class="expense-list"></ul>
+        <p id="empty-state" class="empty-state" hidden>No expenses to show. Add one above to get started.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
